@@ -152,7 +152,7 @@ fun HomeBody(
     Column(modifier = modifier){
         ExpenseBudget(modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small)), budget = budget, viewModel = viewModel)
         when(itemList.isEmpty()){
-               true -> Text(text = "there are no Items over here :(", modifier.fillMaxSize())
+            true -> Text(text = "there are no Items over here :(", modifier.fillMaxSize())
             false -> ExpensesList(itemList = itemList, onItemClick = { onItemClick(it.id) })
         }
     }

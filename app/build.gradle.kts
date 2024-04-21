@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -53,6 +54,7 @@ android {
 }
 
 dependencies {
+    implementation("com.google.firebase:firebase-database:20.3.1")
     val lifecycle_version = "2.6.2"
     val room_version = "2.5.2"
 
@@ -84,7 +86,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Firebase for external Storage
-
+    implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
+    implementation("com.google.firebase:firebase-analytics")
     // Testing
     testImplementation("junit:junit:4.13.2")
 

@@ -88,6 +88,7 @@ dependencies {
     // Firebase for external Storage
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
+
     // Testing
     testImplementation("junit:junit:4.13.2")
 

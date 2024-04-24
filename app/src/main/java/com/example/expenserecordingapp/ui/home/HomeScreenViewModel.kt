@@ -1,9 +1,11 @@
 package com.example.expenserecordingapp.ui.home
 
+import android.util.Log
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.expenserecordingapp.data.UserPreferencesRepository
+import com.example.expenserecordingapp.data.firebase.SetDataDatabase
 import com.example.expenserecordingapp.data.local.Item
 import com.example.expenserecordingapp.data.local.ItemsRepository
 import com.example.expenserecordingapp.ui.theme.primary_expense_container
@@ -22,7 +24,9 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 import java.util.Calendar
 
 class HomeScreenViewModel(
@@ -50,6 +54,10 @@ class HomeScreenViewModel(
         }
     }
 
+    fun sendData(){
+        Log.d("firebase","${homeUiState.value.itemList}")
+        SetDataDatabase(homeUiState.value.itemList)
+    }
     suspend fun getBudget(): Double{
         return userPreferencesRepository.currentBudget.first()
     }

@@ -24,6 +24,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -47,6 +48,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.RectangleShape
@@ -70,6 +72,7 @@ import com.example.expenserecordingapp.data.local.Item
 import com.example.expenserecordingapp.ui.AppViewModelProvider
 import com.example.expenserecordingapp.ui.navigation.NavigationDestination
 import com.example.expenserecordingapp.ui.theme.ExpenseRecordingAppTheme
+import com.example.expenserecordingapp.ui.theme.secondary_expense_container
 import com.example.expenserecordingapp.ui.theme.secondary_expense_container_alternate
 import java.time.MonthDay
 
@@ -115,17 +118,32 @@ fun HomeScreen(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(
-                onClick = navigateToItemEntry,
-                shape = MaterialTheme.shapes.medium,
-                containerColor = secondary_expense_container_alternate,
-                modifier = Modifier
-                    .padding(dimensionResource(id = R.dimen.padding_large))
-            ) {
-                Icon(
-                    imageVector = Icons.Default.Add,
-                    contentDescription = null
-                )
+            Column{
+                FloatingActionButton(
+                    onClick = { viewModel.sendData() } ,
+                    shape = MaterialTheme.shapes.medium,
+                    containerColor = MaterialTheme.colorScheme.outlineVariant,
+                    modifier = Modifier
+                        .scale(0.8f)
+                        .padding(dimensionResource(id = R.dimen.padding_medium))
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Send,
+                        contentDescription = null
+                    )
+                }
+                FloatingActionButton(
+                    onClick = navigateToItemEntry,
+                    shape = MaterialTheme.shapes.medium,
+                    containerColor = secondary_expense_container_alternate,
+                    modifier = Modifier
+                        .padding(dimensionResource(id = R.dimen.padding_large))
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Add,
+                        contentDescription = null
+                    )
+                }
             }
         },
     ) { innerPadding ->

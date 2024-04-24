@@ -12,16 +12,21 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.database
 import com.google.firebase.database.getValue
 
-lateinit private var myRef : DatabaseReference
+private lateinit var database : FirebaseDatabase
+private lateinit var myRef : DatabaseReference
 private var databaseLink = "https://cash-vault-d86fc-default-rtdb.asia-southeast1.firebasedatabase.app/"
 
 fun ConnectToFirebase(){
-    val database = FirebaseDatabase.getInstance(databaseLink)
-    myRef = database.getReference("message")
+    database = FirebaseDatabase.getInstance(databaseLink)
+    setReference("message")
 }
 
-fun SetDataDatabase(){
-    myRef.setValue("Hello, World!")
+fun setReference(name: String){
+    myRef = database.getReference(name)
+}
+
+fun SetDataDatabase(message: Any){
+    myRef.setValue(message)
 }
 
 fun GetDataDatabase(){

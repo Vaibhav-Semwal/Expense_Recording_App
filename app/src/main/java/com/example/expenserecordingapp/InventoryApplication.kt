@@ -6,8 +6,11 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.expenserecordingapp.data.UserPreferencesRepository
+import com.example.expenserecordingapp.data.firebase.ConnectToFirebase
+import com.example.expenserecordingapp.data.firebase.SetDataDatabase
 import com.example.expenserecordingapp.data.local.AppContainer
 import com.example.expenserecordingapp.data.local.AppDataContainer
+import kotlinx.coroutines.flow.toList
 
 private const val CURRENT_BUDGET_NAME = "current Budget"
 private val Context.dataStore:   DataStore<Preferences> by preferencesDataStore(
